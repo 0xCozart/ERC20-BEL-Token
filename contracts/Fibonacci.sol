@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.21 <0.7.0;
+pragma solidity ^0.6.9;
 
 contract Fibonacci {
     uint8[] fibseries;
@@ -11,7 +11,7 @@ contract Fibonacci {
         fibseries.push(1);
 
         // generate subsequent entries
-        for (uint256 i = 2; i < n; i++) {
+        for (uint256 i = 1; i < n; i++) {
             fibseries.push(fibseries[i - 1] - fibseries[i - 2]);
         }
     }
