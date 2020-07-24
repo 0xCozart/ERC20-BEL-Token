@@ -6,12 +6,14 @@
     a JS readable integer if the BN is larger than 53bits. The <.bitLength()>
     is available to check BN. 
 
-    - Work arounds include passing the BN to <.toString()> and then through 
+    - Work-arounds include passing the BN to <.toString()> and then through 
       <parseFloat(string)>.
 */
 
 // Creates a abstract contract to allow for ABI testing
 const BelToken = artifacts.require("BelToken");
+const should = require("chai").should();
+const truffleAssertion = require("truffle-assertions");
 
 // accounts --> list of addresses initiated with the clean test net environment
 contract("BelToken", async (accounts) => {
@@ -54,16 +56,16 @@ contract("BelToken", async (accounts) => {
 
   it("Should return 'Bel' as name.", async () => {
     let name = await this.BelToken.name();
-    name.should.equal.to("bel");
+    expect(name).to.equal("Bel");
   });
 
   it("Should return 'BEL' as symbol.", async () => {
     let symbol = await this.BelToken.symbol();
-    symbol.should.equal.to("BEL");
+    symbol.should.equal("BEL");
   });
 
   it("Should return 18 as decimal.", async () => {
-    let decimal = await this.BelToken.decimal();
-    decimal.should.be(18);
+    let decimal = await this.BelToken.decimals();
+    decimal.toNumber().should.equal(18);
   });
 });
